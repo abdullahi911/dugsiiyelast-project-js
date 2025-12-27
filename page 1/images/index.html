@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizon Cafeteria</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<style>
+.invalid {
+  border: 3px solid red;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+input.valid {
+  border: 3px solid rgb(55, 255, 0);
+  border-radius: 6px;
+  padding: 10px;
+}</style>
+
+  <img src="images/background.jpg" alt="" class="background-image">
+  <img src="images/logo.png" alt="Logo" class="logo">
+
+  <div class="page">
+    <h1>Welcome to Horizon Cafeteria</h1>
+    <p>Enjoy our delicious meals and cozy atmosphere!</p>
+<div class="login-box">
+  <form id="registrationForm">
+    <label>Email</label>
+    <input type="text" id="email" placeholder="Enter your email">
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <label>Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="Re-enter your password">
+
+    <button type="submit">Login</button>
+  </form>
+  <p id="error" style="color: red;"></p>
+  <p id="succes" style="color: green;"></p>
+</div>
+
+ 
+  <script src="script.js"></script>
+</body>
+</html>

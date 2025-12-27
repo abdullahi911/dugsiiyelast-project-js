@@ -102,3 +102,15 @@
     line-height: 1.6;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
+/* Validation styles */
+input.invalid {
+    border: 3px solid red;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+input.valid {
+    border: 3px solid rgb(55, 255, 0);
+    border-radius: 8px;
+    padding: 12px;
+}
