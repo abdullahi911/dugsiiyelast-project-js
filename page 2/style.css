@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(39, 91, 182);
+  height: 90px;
+  padding: 0 40px;
+}
+
+/* Logo */
+.logo {
+  width: 80px;
+  height: 70px;
+  border-radius: 16px;
+}
+
+/* Search area */
+.search-box {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  width: 680px;
+  height: 55px;
+  border-radius: 30px;
+  border: 2px solid #cfe8c3;
+  padding: 0 25px;
+  font-size: 18px;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.input::placeholder {
+  color: #999;
+  font-size: 16px;
+}
+
+.input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 10px rgba(46, 125, 50, 0.35);
+}
+
+/* Button */
+.search-button {
+  height: 55px;
+  padding: 0 35px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #2e7d32, #43a047);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.search-button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Cart */
+./* Cart container */
+.cart {
+  position: relative;
+  width: 70px;     /* bigger */
+  height: 70px;    /* bigger */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Shopping icon */
+.shopping-icon {
+  width: 55px;     /* bigger icon */
+  height: 55px;
+}
+
+/* Number badge */
+.cart-count {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  width: 22px;     /* slightly bigger */
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* Hover effect */
+.cart:hover .shopping-icon {
+  transform: scale(1.12);
+}
