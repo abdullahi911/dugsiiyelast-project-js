@@ -24,14 +24,15 @@ const foodlist = [
 
 foodlist.forEach(food => {
 
-  const card = `
-    <div class="food-card">
-      <img src="${food.src}" class="food-image">
-      <h3 class="food-name">${food.name}</h3>
-      <p class="food-price">ETB ${food.price}</p>
-      <button class="add-to-cart">Add to Cart</button>
-    </div>
-  `;
+const card = `
+  <div class="food-card">
+    <img src="${food.src}" class="food-image">
+    <h3 class="food-name">${food.name}</h3>
+    <p class="food-price">ETB ${food.price}</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+`;
+
 
   if (['Burger','Pizza','Fries','Shuwarma'].includes(food.name)) {
     fastFood.innerHTML += card;
@@ -72,5 +73,66 @@ searchBtn.addEventListener('click', () => {
       category.previousElementSibling.style.display = 'none';
       category.style.display = 'none';
     }
+  });
+});
+// Set initial cart count
+cartcount.textContent = 0; // global cart counter
+
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const card = button.parentElement;
+    let itemCount = 1; // initial quantity
+
+    // Remove original Add to Cart button
+    button.remove();
+
+    // Create Add and Cancel buttons
+    const addBtn = document.createElement('button');
+    addBtn.textContent = "Add";
+    addBtn.className = "add-to-cart";
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = "Cancel";
+    cancelBtn.className = "cancel-to-cart";
+
+    // Create quantity display
+    let quantityDisplay = document.createElement('p');
+    quantityDisplay.className = "item-count";
+    quantityDisplay.textContent = `Quantity: ${itemCount}`;
+    quantityDisplay.style.fontWeight = "bold";
+
+    // Append to card
+    card.appendChild(quantityDisplay);
+    card.appendChild(addBtn);
+    card.appendChild(cancelBtn);
+
+    // Update global cart count initially
+    cartcount.textContent = parseInt(cartcount.textContent) + 1;
+
+    // Add button increases quantity and global count
+    addBtn.addEventListener('click', () => {
+      itemCount++;
+      quantityDisplay.textContent = `Quantity: ${itemCount}`;
+      cartcount.textContent = parseInt(cartcount.textContent) + 1;
+    });
+
+    // Cancel button decreases quantity and global count
+    cancelBtn.addEventListener('click', () => {
+      if (itemCount > 0) {
+        itemCount--;
+        quantityDisplay.textContent = `Quantity: ${itemCount}`;
+        cartcount.textContent = parseInt(cartcount.textContent) - 1;
+      }
+
+      // If quantity is 0, remove buttons and restore original
+      if (itemCount === 0) {
+        addBtn.remove();
+        cancelBtn.remove();
+        quantityDisplay.remove();
+        card.appendChild(button);
+      }
+    });
   });
 });
