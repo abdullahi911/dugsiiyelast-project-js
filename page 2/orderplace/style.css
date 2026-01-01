@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(39, 91, 182);
+  height: 90px;
+  padding: 0 40px;
+  gap: 20px;
+
+
+  position: sticky; 
+  top: 0;
+  z-index: 1000; 
+}
+
+
+.logo {
+  width: 80px;
+  height: 70px;
+  border-radius: 16px;
+}
+p {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}

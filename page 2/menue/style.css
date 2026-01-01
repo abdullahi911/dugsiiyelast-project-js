@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+
 }
 
 /* HEADER */
@@ -15,7 +16,7 @@
   padding: 0 40px;
   gap: 20px;
 
-  /* Make header sticky */
+
   position: sticky; 
   top: 0;
   z-index: 1000; 
@@ -56,12 +57,33 @@
 }
 
 /* CART */
-.cart { position: relative; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.cart { 
+  position: relative;
+   width: 70px;
+    height: 70px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+
+  }
 .shopping-icon {
   width: 100%;
 }
 
-/* Cart count badge */ .cart-count { position: absolute; top: 6px; right: 6px; background-color: red; color: white; font-size: 14px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; } /* Hover effect */ .cart:hover .shopping-icon { transform: scale(1.12); }
+ .cart-count {
+  position: absolute;
+   top: 6px; right: 6px;
+     background-color: red; 
+     color: white; 
+     font-size: 14px; 
+     font-weight: bold; width: 22px; 
+     height: 22px; border-radius: 50%;
+      display: flex; 
+      align-items: center; 
+      justify-content: center; }  
+    
+      .cart:hover .shopping-icon { transform: scale(1.12); }
 /* MAIN */
 .food-item {
   padding: 30px;

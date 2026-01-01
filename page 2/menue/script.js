@@ -3,6 +3,8 @@ const input = document.querySelector('.input'); const searchBtn = document.query
 const fastFood = document.querySelector('.fast-food');
 const culturalFood = document.querySelector('.cultural-food');
 const drinks = document.querySelector('.drinks');
+const orderplace = document.querySelector('.shopping-icon');
+
 
 const foodlist = [
   { name: 'Burger', src: 'images/burger.jpg', price: 400.99 },
@@ -76,19 +78,18 @@ searchBtn.addEventListener('click', () => {
   });
 });
 // Set initial cart count
-cartcount.textContent = 0; // global cart counter
+cartcount.textContent = 0; 
 
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
 addToCartButtons.forEach(button => {
   button.addEventListener('click', () => {
     const card = button.parentElement;
-    let itemCount = 1; // initial quantity
+    let itemCount = 1;
 
-    // Remove original Add to Cart button
+
     button.remove();
 
-    // Create Add and Cancel buttons
     const addBtn = document.createElement('button');
     addBtn.textContent = "Add";
     addBtn.className = "add-to-cart";
@@ -97,28 +98,28 @@ addToCartButtons.forEach(button => {
     cancelBtn.textContent = "Cancel";
     cancelBtn.className = "cancel-to-cart";
 
-    // Create quantity display
+
     let quantityDisplay = document.createElement('p');
     quantityDisplay.className = "item-count";
     quantityDisplay.textContent = `Quantity: ${itemCount}`;
     quantityDisplay.style.fontWeight = "bold";
 
-    // Append to card
+
     card.appendChild(quantityDisplay);
     card.appendChild(addBtn);
     card.appendChild(cancelBtn);
 
-    // Update global cart count initially
+
     cartcount.textContent = parseInt(cartcount.textContent) + 1;
 
-    // Add button increases quantity and global count
+    
     addBtn.addEventListener('click', () => {
       itemCount++;
       quantityDisplay.textContent = `Quantity: ${itemCount}`;
       cartcount.textContent = parseInt(cartcount.textContent) + 1;
     });
 
-    // Cancel button decreases quantity and global count
+  
     cancelBtn.addEventListener('click', () => {
       if (itemCount > 0) {
         itemCount--;
@@ -126,7 +127,7 @@ addToCartButtons.forEach(button => {
         cartcount.textContent = parseInt(cartcount.textContent) - 1;
       }
 
-      // If quantity is 0, remove buttons and restore original
+     
       if (itemCount === 0) {
         addBtn.remove();
         cancelBtn.remove();
@@ -136,3 +137,18 @@ addToCartButtons.forEach(button => {
     });
   });
 });
+/*
+orderplace.addEventListener('click', () => {
+ const card = `
+  <div class="food-card">
+    <img src="o" class="food-image">
+    <h3 class="food-name">hi</h3>
+    <p class="food-price">ETB</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+`;
+console.log("order placed");
+
+}
+);
+*/
