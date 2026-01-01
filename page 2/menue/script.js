@@ -1,23 +1,25 @@
+document.addEventListener('DOMContentLoaded', () => {
 
-const input = document.querySelector('.input'); const searchBtn = document.querySelector('.search-button'); const cartcount = document.querySelector('.cart-count'); const fooditem = document.querySelectorAll('.food-item');
+const input = document.querySelector('.input');
+const searchBtn = document.querySelector('.search-button');
+const cartcount = document.querySelector('.cart-count');
+
 const fastFood = document.querySelector('.fast-food');
 const culturalFood = document.querySelector('.cultural-food');
 const drinks = document.querySelector('.drinks');
-const orderplace = document.querySelector('.shopping-icon');
 
+cartcount.textContent = 0;
 
 const foodlist = [
   { name: 'Burger', src: 'images/burger.jpg', price: 400.99 },
   { name: 'Pizza', src: 'images/pizza.jpg', price: 250.99 },
   { name: 'Fries', src: 'images/fries.jpg', price: 150.99 },
   { name: 'Shuwarma', src: 'images/shuwarma.jpg', price: 250.99 },
-
   { name: 'Pasta', src: 'images/pasta.jpg', price: 250.99 },
   { name: 'Rice', src: 'images/rice.webp', price: 250.99 },
   { name: 'Kitfo', src: 'images/kitfo.webp', price: 300.99 },
   { name: 'qaywat', src: 'images/qaywat.jpg', price: 250.99 },
   { name: 'Firfir', src: 'images/firfir.jpg', price: 250.99 },
-
   { name: 'Water', src: 'images/water.webp', price: 25.99 },
   { name: 'Cocacola', src: 'images/cocacola.jpg', price: 30.99 },
   { name: 'Fanta', src: 'images/fanta.webp', price: 30.99 },
@@ -25,130 +27,122 @@ const foodlist = [
 ];
 
 foodlist.forEach(food => {
-
-const card = `
-  <div class="food-card">
-    <img src="${food.src}" class="food-image">
-    <h3 class="food-name">${food.name}</h3>
-    <p class="food-price">ETB ${food.price}</p>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-`;
-
+  const card = `
+    <div class="food-card">
+      <img src="${food.src}" class="food-image">
+      <h3 class="food-name">${food.name}</h3>
+      <p class="food-price">ETB ${food.price}</p>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  `;
 
   if (['Burger','Pizza','Fries','Shuwarma'].includes(food.name)) {
     fastFood.innerHTML += card;
-  }
-  else if (['Pasta','Rice','Kitfo','qaywat','Firfir'].includes(food.name)) {
+  } else if (['Pasta','Rice','Kitfo','qaywat','Firfir'].includes(food.name)) {
     culturalFood.innerHTML += card;
-  }
-  else {
+  } else {
     drinks.innerHTML += card;
   }
-
 });
 
+/* SEARCH */
 searchBtn.addEventListener('click', () => {
-  const searchTerm = input.value.toLowerCase();
-
-  const categories = document.querySelectorAll('.food-menu');
-
-  categories.forEach(category => {
-    const cards = category.querySelectorAll('.food-card');
-    let hasMatch = false;
-
-    cards.forEach(card => {
-      const foodName = card.querySelector('.food-name').textContent.toLowerCase();
-
-      if (foodName.includes(searchTerm)) {
-        card.style.display = 'block';
-        hasMatch = true; 
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    if (hasMatch) {
-      category.previousElementSibling.style.display = 'block'; 
-      category.style.display = 'grid';
-    } else {
-      category.previousElementSibling.style.display = 'none';
-      category.style.display = 'none';
-    }
+  const term = input.value.toLowerCase();
+  document.querySelectorAll('.food-card').forEach(card => {
+    const name = card.querySelector('.food-name').textContent.toLowerCase();
+    card.style.display = name.includes(term) ? 'block' : 'none';
   });
 });
-// Set initial cart count
-cartcount.textContent = 0; 
 
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-addToCartButtons.forEach(button => {
+/* ADD TO CART */
+document.querySelectorAll('.add-to-cart').forEach(button => {
   button.addEventListener('click', () => {
     const card = button.parentElement;
     let itemCount = 1;
 
-
     button.remove();
 
     const addBtn = document.createElement('button');
-    addBtn.textContent = "Add";
-    addBtn.className = "add-to-cart";
+    addBtn.textContent = 'Add';
+    addBtn.className = 'add-to-cart';
 
     const cancelBtn = document.createElement('button');
-    cancelBtn.textContent = "Cancel";
-    cancelBtn.className = "cancel-to-cart";
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.className = 'cancel-to-cart';
 
+    const qty = document.createElement('p');
+    qty.className = 'item-count';
+    qty.textContent = `Quantity: ${itemCount}`;
+    qty.style.fontWeight = 'bold';
 
-    let quantityDisplay = document.createElement('p');
-    quantityDisplay.className = "item-count";
-    quantityDisplay.textContent = `Quantity: ${itemCount}`;
-    quantityDisplay.style.fontWeight = "bold";
+    card.append(qty, addBtn, cancelBtn);
+    cartcount.textContent = +cartcount.textContent + 1;
 
+    saveCartToLocalStorage();
 
-    card.appendChild(quantityDisplay);
-    card.appendChild(addBtn);
-    card.appendChild(cancelBtn);
-
-
-    cartcount.textContent = parseInt(cartcount.textContent) + 1;
-
-    
     addBtn.addEventListener('click', () => {
       itemCount++;
-      quantityDisplay.textContent = `Quantity: ${itemCount}`;
-      cartcount.textContent = parseInt(cartcount.textContent) + 1;
+      qty.textContent = `Quantity: ${itemCount}`;
+      cartcount.textContent = +cartcount.textContent + 1;
+      saveCartToLocalStorage();
     });
 
-  
     cancelBtn.addEventListener('click', () => {
-      if (itemCount > 0) {
-        itemCount--;
-        quantityDisplay.textContent = `Quantity: ${itemCount}`;
-        cartcount.textContent = parseInt(cartcount.textContent) - 1;
-      }
+      itemCount--;
+      cartcount.textContent = +cartcount.textContent - 1;
 
-     
-      if (itemCount === 0) {
+      if (itemCount <= 0) {
+        qty.remove();
         addBtn.remove();
         cancelBtn.remove();
-        quantityDisplay.remove();
         card.appendChild(button);
+      } else {
+        qty.textContent = `Quantity: ${itemCount}`;
       }
+
+      saveCartToLocalStorage();
     });
   });
 });
-/*
-orderplace.addEventListener('click', () => {
- const card = `
-  <div class="food-card">
-    <img src="o" class="food-image">
-    <h3 class="food-name">hi</h3>
-    <p class="food-price">ETB</p>
-    <button class="add-to-cart">Add to Cart</button>
-  </div>
-`;
-console.log("order placed");
+
+function saveCartToLocalStorage() {
+  const cartData = [];
+  document.querySelectorAll('.food-card').forEach(card => {
+    const name = card.querySelector('.food-name').textContent;
+    const qtyElem = card.querySelector('.item-count');
+    if (qtyElem) {
+
+      const quantity = parseInt(qtyElem.textContent.replace('Quantity: ', ''));
+      cartData.push({ name, quantity });
+
+    }
+  });
+  localStorage.setItem('cart', JSON.stringify(cartData));
 
 }
-);
-*/
+});
+
+function loadCartFromLocalStorage() {
+  const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+
+  cartData.forEach(item => {
+    document.querySelectorAll('.food-card').forEach(card => {
+      const name = card.querySelector('.food-name').textContent;
+
+      if (name === item.name) {
+        let button = card.querySelector('.add-to-cart');
+        if (!button) return;
+
+        // first click
+        button.click();
+
+        // add remaining quantity
+        for (let i = 1; i < item.quantity; i++) {
+          const addBtn = card.querySelector('.add-to-cart');
+          if (addBtn) addBtn.click();
+        }
+      }
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);
