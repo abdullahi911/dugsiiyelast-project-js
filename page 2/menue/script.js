@@ -7,6 +7,7 @@ const cartcount = document.querySelector('.cart-count');
 const fastFood = document.querySelector('.fast-food');
 const culturalFood = document.querySelector('.cultural-food');
 const drinks = document.querySelector('.drinks');
+const cart = document.querySelector('.shopping-icon');
 
 cartcount.textContent = 0;
 

@@ -25,3 +25,127 @@ p {
   text-align: center;
   margin-top: 20px;
 }
+body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      min-height: 100vh;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Main card (left) */
+    .money-card {
+      width: 45%;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .money-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .money-card .logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+
+    .money-card h3 {
+      margin: 10px 0;
+      color: #ff6f61;
+    }
+
+    .money-card h2 {
+      margin: 15px 0 5px 0;
+      color: #333;
+    }
+
+    .money-card p {
+      margin: 8px 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .money-card button {
+      margin-top: 20px;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      background-color: #ff6f61;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    .money-card button:hover {
+      background-color: #ff4c3b;
+      transform: scale(1.05);
+    }
+
+ 
+    .order-summary {
+      width: 220px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 20px;
+      text-align: center;
+    }
+
+    .order-summary h3 {
+      margin-top: 0;
+      color: #ff6f61;
+    }
+
+    .order-summary p {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+.cart-items-container {
+  margin-top: 15px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.empty-cart-message {
+  font-style: italic;
+  color: #888;
+}
+
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart-item-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.cart-item-info {
+  font-family: 'Arial', sans-serif;
+}
+
+
+.cart-total {
+  font-weight: bold;
+  margin-top: 10px;
+}
