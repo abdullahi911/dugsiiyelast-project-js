@@ -55,25 +55,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getFoodInfo(name) {
-    const foodlist = [
-      { name: 'Burger', src: '../menue/images/burger.jpg', price: 400.99 },
-      { name: 'Pizza', src: '../menue/images/pizza.jpg', price: 250.99 },
-      { name: 'Fries', src: '../menue/images/fries.jpg', price: 150.99 },
-      { name: 'Shuwarma', src: '../menue/images/shuwarma.jpg', price: 250.99 },
-      { name: 'Pasta', src: '../menue/images/pasta.jpg', price: 250.99 },
-      { name: 'Rice', src: '../menue/images/rice.webp', price: 250.99 },
-      { name: 'Kitfo', src: '../menue/images/kitfo.webp', price: 300.99 },
-      { name: 'qaywat', src: '../menue/images/qaywat.jpg', price: 250.99 },
-      { name: 'Firfir', src: '../menue/images/firfir.jpg', price: 250.99 },
-      { name: 'Water', src: '../menue/images/water.webp', price: 25.99 },
-      { name: 'Cocacola', src: '../menue/images/cocacola.jpg', price: 30.99 },
-      { name: 'Fanta', src: '../menue/images/fanta.webp', price: 30.99 },
-      { name: 'Sprite', src: '../menue/images/sprite.jpg', price: 30.99 }
-    ];
+    
+const foodlist = [
+  { name: 'Burger', src: '../images/burger.jpg', price: 400.99 },
+  { name: 'Pizza', src: '../images/pizza.jpg', price: 250.99 },
+  { name: 'Fries', src: '../images/fries.jpg', price: 150.99 },
+  { name: 'Shuwarma', src: '../images/shuwarma.jpg', price: 250.99 },
+  { name: 'Pasta', src: '../images/pasta.jpg', price: 250.99 },
+  { name: 'Rice', src: '../images/rice.webp', price: 250.99 },
+  { name: 'Kitfo', src: '../images/kitfo.webp', price: 300.99 },
+  { name: 'qaywat', src: '../images/qaywat.jpg', price: 250.99 },
+  { name: 'Firfir', src: '../images/firfir.jpg', price: 250.99 },
+  { name: 'Water', src: '../images/water.webp', price: 25.99 },
+  { name: 'Cocacola', src: '../images/cocacola.jpg', price: 30.99 },
+  { name: 'Fanta', src: '../images/fanta.webp', price: 30.99 },
+  { name: 'Sprite', src: '../images/sprite.jpg', price: 30.99 }
+];
     return foodlist.find(f => f.name === name) || { src: '', price: 0 };
   }
 
 orderButton.addEventListener('click', () => {
+  // Read latest cart data
+  const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+
   const oldCard = document.querySelector('.payment-card');
   if (oldCard) oldCard.remove();
 
@@ -101,7 +105,7 @@ orderButton.addEventListener('click', () => {
     <button class="confirm-order-btn">Confirm Order</button>
   `;
 
-  cartContainer.appendChild(paymentCard);
+  moneyCard.appendChild(paymentCard);
 
   paymentCard.querySelector('.confirm-order-btn')
     .addEventListener('click', () => {
@@ -122,22 +126,17 @@ orderButton.addEventListener('click', () => {
         location.reload();
       }, 2500);
     });
-});
+})
+  function showDesktopMessage(message, type) {
+    const existingMsg = document.querySelector('.desktop-message');
 
-/* DESKTOP MESSAGE FUNCTION */
-function showDesktopMessage(text, type) {
-  const oldMsg = document.querySelector('.desktop-message');
-  if (oldMsg) oldMsg.remove();
-
-  const message = document.createElement('div');
-  message.className = `desktop-message ${type}`;
-  message.textContent = text;
-
-  document.body.appendChild(message);
-
-  setTimeout(() => {
-    message.classList.add('hide');
-    setTimeout(() => message.remove(), 500);
-  }, 2000);
-}
-});
+    if (existingMsg) existingMsg.remove();
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `desktop-message ${type}`;
+    msgDiv.textContent = message;
+    document.body.appendChild(msgDiv);
+    setTimeout(() => {
+      msgDiv.remove();
+    }, 2000);
+  }
+  });

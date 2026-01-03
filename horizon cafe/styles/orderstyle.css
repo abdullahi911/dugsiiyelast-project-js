@@ -1,0 +1,223 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  min-height: 100vh;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  font-size: larger;
+  
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  background-color: rgb(39, 91, 182);
+  padding: 0 20px;
+  height: 100px;
+  z-index: 1000;
+}
+
+.logo {
+  width: 110px;
+  height: 90px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* MONEY CARD */
+.money-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  margin: 20px auto;
+  transition: transform 0.3s;
+}
+
+.money-card:hover {
+  transform: translateY(-5px);
+}
+
+.money-card h2, .money-card h3, .money-card p {
+  margin: 10px 0;
+}
+
+.money-card button {
+  margin-top: 20px;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  background-color: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+
+.money-card button:hover {
+  background-color: #ff4c3b;
+  transform: scale(1.05);
+}
+
+/* CART ITEMS */
+.cart-items-container {
+  margin-top: 15px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.empty-cart-message {
+  font-style: italic;
+  color: #888;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart-item-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.cart-item-info {
+  font-family: Arial, sans-serif;
+}
+
+.cart-total {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* PAYMENT CARD */
+.payment-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  max-width: 420px;
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.payment-card h3 {
+  margin-bottom: 15px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.confirm-order-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #28a745;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.confirm-order-btn:hover {
+  background: #218838;
+}
+
+/* DESKTOP MESSAGE (TOAST) */
+.desktop-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 260px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: white;
+  z-index: 9999;
+  animation: slideIn 0.4s ease;
+}
+
+.desktop-message.success {
+  background: #28a745;
+}
+
+.desktop-message.error {
+  background: #dc3545;
+}
+
+.desktop-message.hide {
+  animation: slideOut 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .money-card, .payment-card {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .logo {
+    width: 90px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .money-card button, .confirm-order-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}

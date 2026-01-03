@@ -1,0 +1,119 @@
+/* BACKGROUND IMAGE */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.75;
+}
+
+/* LOGO */
+.logo {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    width: 10vw;       /* responsive width */
+    max-width: 80px;   /* cap for large screens */
+    height: auto;
+    z-index: 10;
+    opacity: 1;
+    border-radius: 1rem;
+}
+
+/* PAGE CONTAINER */
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #870202;
+    font-size: 1.2rem;
+    padding: 2%;
+}
+
+/* LOGIN BOX */
+.login-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 2.5rem;  /* responsive padding */
+    border-radius: 1rem;
+    width: 90%;             /* responsive width */
+    max-width: 25rem;       /* cap for large screens */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+/* LABELS */
+.login-box label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* INPUT FIELDS */
+.login-box input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.login-box input:focus {
+    border-color: #ff9800;
+    box-shadow: 0 0 0.3rem rgba(255, 152, 0, 0.6);
+}
+
+/* BUTTONS */
+.login-box button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #ff9800;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background: #e68900;
+}
+
+/* HEADINGS */
+.page h1 {
+    font-size: 3rem;  /* scalable heading */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1rem;
+    color: #ffffff;
+    text-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
+}
+.page h1:hover {
+    color: #ffcc00;
+    text-shadow: 0 0.25rem 1.25rem rgba(255, 204, 0, 0.7);
+}
+
+/* PARAGRAPHS */
+.page p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: #f30000;
+    letter-spacing: 0.03rem;
+    line-height: 1.6;
+    text-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.3);
+}
+.page p:hover {
+    color: #ff4444;
+    text-shadow: 0 0.1rem 0.6rem rgba(255, 68, 68, 0.5);
+}
