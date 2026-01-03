@@ -149,3 +149,104 @@ body {
   font-weight: bold;
   margin-top: 10px;
 }
+/* PAYMENT CARD */
+.payment-card {
+  max-width: 420px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Title */
+.payment-card h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Options */
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* Button */
+.confirm-order-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #28a745;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.confirm-order-btn:hover {
+  background: #218838;
+}
+
+/* DESKTOP MESSAGE (TOAST) */
+.desktop-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 260px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: white;
+  z-index: 9999;
+  animation: slideIn 0.4s ease;
+}
+
+/* Success & Error */
+.desktop-message.success {
+  background: #28a745;
+}
+
+.desktop-message.error {
+  background: #dc3545;
+}
+
+/* Hide animation */
+.desktop-message.hide {
+  animation: slideOut 0.5s ease forwards;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+  .payment-card {
+    margin: 15px;
+  }
+
+  .desktop-message {
+    right: 50%;
+    transform: translateX(50%);
+    top: 15px;
+  }
+}

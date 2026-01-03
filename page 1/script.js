@@ -39,15 +39,24 @@ document.addEventListener("DOMContentLoaded", function () {
             setValid(confirmPassword);
         }
 
-        // --- Show messages ---
-        if (!isValid) {
-            errorMsg.textContent = "Please correct the highlighted fields!";
-        } else {
-            successMsg.textContent = "✅ Successfully registered!";
-            // Optional: reset form
-            // form.reset();
-        }
+if (!isValid) {
+    errorMsg.textContent = "Please correct the highlighted fields!";
+    document.querySelector('.rule').style.display = 'block';
+} else {
+    successMsg.textContent = "✅ Successfully registered!";
+
+    saveUserData();
+}
     });
+function saveUserData() {
+    localStorage.setItem("loggedInUser", email.value);
+
+    document.querySelector('.rule').style.display = 'none';
+
+    setTimeout(() => {
+        window.location.href = "http://127.0.0.1:5500/page%202/menue/index.html"; 
+    }, 1500);
+}
 
     function setInvalid(input) {
         input.classList.add("invalid");

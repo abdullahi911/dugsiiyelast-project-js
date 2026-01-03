@@ -73,13 +73,71 @@ document.addEventListener('DOMContentLoaded', () => {
     return foodlist.find(f => f.name === name) || { src: '', price: 0 };
   }
 
-  orderButton.addEventListener('click', () => {
-    if (cartData.length === 0) {
-      alert("No items to order!");
-    } else {
-      alert("Order placed successfully!");
+orderButton.addEventListener('click', () => {
+  const oldCard = document.querySelector('.payment-card');
+  if (oldCard) oldCard.remove();
+
+  if (cartData.length === 0) {
+    showDesktopMessage("No items in cart to place an order.", "error");
+    return;
+  }
+
+  const paymentCard = document.createElement('div');
+  paymentCard.className = 'payment-card';
+
+  paymentCard.innerHTML = `
+    <h3>Choose Payment Method</h3>
+
+    <div class="payment-option">
+      <input type="radio" id="cash" name="payment" value="Cash" checked>
+      <label for="cash">💵 Cash on Delivery</label>
+    </div>
+
+    <div class="payment-option">
+      <input type="radio" id="card" name="payment" value="Card">
+      <label for="card">💳 Credit / Debit Card</label>
+    </div>
+
+    <button class="confirm-order-btn">Confirm Order</button>
+  `;
+
+  cartContainer.appendChild(paymentCard);
+
+  paymentCard.querySelector('.confirm-order-btn')
+    .addEventListener('click', () => {
+      const selectedPayment = document.querySelector(
+        'input[name="payment"]:checked'
+      ).value;
+
+      localStorage.setItem('paymentMethod', selectedPayment);
+      localStorage.setItem('orderStatus', 'placed');
       localStorage.removeItem('cart');
-      location.reload();
-    }
-  });
+
+      showDesktopMessage(
+        `Order placed successfully! Payment: ${selectedPayment}`,
+        "success"
+      );
+
+      setTimeout(() => {
+        location.reload();
+      }, 2500);
+    });
+});
+
+/* DESKTOP MESSAGE FUNCTION */
+function showDesktopMessage(text, type) {
+  const oldMsg = document.querySelector('.desktop-message');
+  if (oldMsg) oldMsg.remove();
+
+  const message = document.createElement('div');
+  message.className = `desktop-message ${type}`;
+  message.textContent = text;
+
+  document.body.appendChild(message);
+
+  setTimeout(() => {
+    message.classList.add('hide');
+    setTimeout(() => message.remove(), 500);
+  }, 2000);
+}
 });

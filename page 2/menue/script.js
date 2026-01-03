@@ -146,4 +146,16 @@ function loadCartFromLocalStorage() {
     });
   });
 }
-document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);
+document.addEventListener("DOMContentLoaded", () => {
+  const signUpDiv = document.querySelector(".sign-up");
+  const userEmail = localStorage.getItem("loggedInUser");
+
+  if (userEmail) {
+    const userName = userEmail.split("@")[0]; 
+
+    signUpDiv.innerHTML = `
+      <span class="welcome-text">Welcome, ${userName}</span>
+    `;
+  }
+});
+loadCartFromLocalStorage();
